@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="header">
+    <h1><strong>Crops</strong></h1>
+    <input type="text" placeholder="Search" class="search-box" [(ngModel)]="searchText" (input)="filterCrops()" />
+  </div>
+ 
+  <div *ngIf="crops.length>0; else noCrops">
+    <table class="agrochemicals-table">
+      <thead>
+        <tr>
+          <th>S.No</th>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Planning Date</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let crop of filteredCrops; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ crop.cropName }}</td>
+          <td>{{ crop.cropType }}</td>
+          <td>{{ crop.description }}</td>
+          <td>{{ crop.plantingDate }}</td>
+          <td>
+            <div class="action-buttons">
+              <button class="edit-button" (click)="editCrop(crop.cropId)">Edit</button>
+              <button class="delete-button" (click)="deleteCrop(crop.cropId)">Delete</button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <ng-template #noCrops>
+    <p>No Crops found</p>
+  </ng-template>
+</div>

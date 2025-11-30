@@ -1,0 +1,67 @@
+<form [formGroup]="selleraddForm" (ngSubmit)="onSubmit()">
+    <h2>Create New Agro Chemical</h2>
+    <div>
+        <label for="name">Name</label><br>
+        <input type="text" name="name" id="name" required formControlName="name"/>
+        <div class="formcontrols" *ngIf="f.name.invalid && f.name.touched">
+            <small class="form-error" *ngIf="f.name.errors?.required">Name is required</small>
+            <small class="form-error" *ngIf="f.name.errors?.pattern">Name must be in correct pattern</small>
+        </div>
+    </div>
+    <div>
+        <label for="brand">Brand</label><br>
+        <input type="text" name="brand" id="brand" required formControlName="brand"/>
+        <div class="formcontrols" *ngIf="f.brand.invalid && f.brand.touched">
+            <small class="form-error" *ngIf="f.brand.errors?.required">Brand is required</small>
+            <small class="form-error" *ngIf="f.brand.errors?.pattern">Brand must be in correct pattern</small>
+        </div>
+    </div>
+    <div>
+        <label for="category">Category</label><br>
+        <select name="category" id="category" formControlName="category">
+            <option value="">Select Category</option>
+            <option value="Insecticides">Insecticides</option>
+            <option value="Fungicides">Fungicides</option>
+            <option value="Herbicides">Herbicides</option>
+            <option value="Algaecides">Algaecides</option>
+        </select>
+        <div class="formcontrols" *ngIf="f.category.invalid && f.category.touched">
+            <small class="form-error" *ngIf="f.category.errors?.required">Category is required</small>
+        </div>
+    </div>
+    <div>
+        <label for="description">Description</label><br>
+        <input type="text" name="description" id="description" required formControlName="description"/>
+        <div class="formcontrols" *ngIf="f.description.invalid && f.description.touched">
+            <small class="form-error" *ngIf="f.description.errors?.required">Description is required</small>
+            <small class="form-error" *ngIf="f.description.errors?.pattern">Description must be in correct pattern</small>
+        </div>
+    </div>
+    <div>
+        <label for="unit">Unit</label><br>
+        <select name="unit" id="unit" formControlName="unit">
+            <option value="">Select Unit</option>
+            <option value="grams">Grams</option>
+            <option value="kilograms">Kilograms</option>
+        </select>
+        <div class="formcontrols" *ngIf="f.unit.invalid && f.unit.touched">
+            <small class="form-error" *ngIf="f.unit.errors?.required">Unit is required</small>
+        </div>
+    </div>
+    <div>
+        <label for="priceperunit">Price Per Unit</label>
+        <input type="number" name="priceperunit" id="priceperunit" required formControlName="pricePerUnit"/>
+        <div class="formcontrols" *ngIf="f.pricePerUnit.invalid && f.pricePerUnit.touched">
+            <small class="form-error" *ngIf="f.pricePerUnit.errors?.required">Price per unit required</small>
+            <small class="form-error" *ngIf="f.pricePerUnit.errors?.min">Valid price per unit is required</small>
+        </div>
+    </div>
+    
+    <div>
+        <label for="file-upload">Image</label>
+     <div class="upload">
+        <input type="file" id="file-upload" name="file-upload" accept="image/*" (change)="onFileSelected($event)">
+    </div>
+    </div>
+    <button type="submit">Submit</button>
+</form>

@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="header">
+    <h1><strong>AgroChemicals</strong></h1>
+  </div>
+  <input type="text" placeholder="Search" [(ngModel)]="searchText" (input)="filterChemicals()">
+  <table class="agrochemicals-table">
+    <thead>
+      <tr>
+        <th>S.No</th>
+        <th>Name</th>
+        <th>Brand</th>
+        <th>Category</th>
+        <th>Description</th>
+        <th>Unit</th>
+        <th>Price Per Unit</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let chemical of filteredAgrochemicals; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ chemical.name }}</td>
+        <td>{{ chemical.brand }}</td>
+        <td>{{ chemical.category }}</td>
+        <td>{{ chemical.description }}</td>
+        <td>{{ chemical.unit }}</td>
+        <td>{{ chemical.pricePerUnit }}</td>
+        <td>
+          <button class="edit-btn" (click)="editChemical(chemical.agroChemicalId)">Edit</button>
+          <button class="delete-btn" (click)="deleteChemical(chemical)">Delete</button>
+          <button class="show-image-btn" (click)="showImage(chemical)">Show Image</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div *ngIf="selectedImage" class="popup-overlay" (click)="closePopup()"></div>
+<div *ngIf="selectedImage" class="popup">
+  <img [src]="selectedImage" alt="Image" />
+  <button class="show-image-btn" (click)="closePopup()">Close</button>
+</div>

@@ -1,0 +1,148 @@
+.container {
+  max-width: 90%;
+  margin: 0 auto;
+  padding: 20px;
+  background: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+}
+ 
+.header {
+  text-align: center;
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 20px;
+}
+ 
+h1 {
+  font-size: 25px;
+  font-weight: bold;
+  border-bottom: 2px solid #007fff;
+  margin-bottom: 40px;
+  padding-bottom: 10px;
+}
+ 
+.search-box {
+  width: 30%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-right: 878px;
+  box-sizing: border-box;
+}
+ 
+.agrochemicals-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+ 
+.agrochemicals-table th,
+.agrochemicals-table td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ccc;
+  border-right: 2px solid #ccc;
+}
+ 
+.agrochemicals-table th:last-child,
+.agrochemicals-table td:last-child {
+  border-right: none;
+  width: 370px;
+  text-align: center;
+}
+ 
+.agrochemicals-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+ 
+.agrochemicals-table tr:hover {
+  background-color: #f1f1f1;
+}
+ 
+.agrochemicals-table td {
+  text-align: center;
+}
+ 
+.action-buttons {
+  display: flex;
+  justify-content: space-evenly; 
+}
+ 
+button {
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 10px;
+}
+
+.edit-btn {
+  background-color: #007fff; 
+}
+
+.edit-btn:hover {
+  background-color: #0057cc; 
+}
+
+.delete-btn {
+  background-color: #ff6347;
+}
+
+.delete-btn:hover {
+  background-color: #cc5140; 
+}
+
+.show-image-btn {
+  display: block; 
+  margin: 10px auto 0; 
+  background-color: #32cd32; 
+}
+
+.show-image-btn:hover {
+  background-color: #28a428;
+}
+ 
+@media (max-width: 600px) {
+  .container {
+    padding: 10px;
+  }
+ 
+  button {
+    width: 100%;
+  }
+}
+.agrochemicals-table th {
+  font-weight: bold;
+  background-color: rgb(19, 141, 193);
+  text-align: center;
+}
+.popup {
+  display: block;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid #ccc;
+  padding: 10px;
+  background-color: white;
+  z-index: 1001;
+  text-align: center;
+}
+
+.popup img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.popup-overlay {
+  display: block;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}

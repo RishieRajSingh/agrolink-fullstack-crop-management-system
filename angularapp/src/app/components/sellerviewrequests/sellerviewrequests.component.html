@@ -1,0 +1,59 @@
+<div class="container">
+    <div class="header">
+      <h1><strong>Chemical Requests for Approval</strong></h1>
+    </div>
+    <div class="filter">
+      <label for="statusFilter">Filter by Status:</label>
+      <select id="statusFilter" (change)="filterByStatus($event.target.value)">
+        <option value="All">All</option>
+        <option value="Pending">Pending</option>
+        <option value="Approved">Approved</option>
+        <option value="Rejected">Rejected</option>
+      </select>
+    </div>
+    <table class="requests table">
+      <thead>
+        <tr>
+          <th>S.No</th>
+          <th>Username</th>
+          <th>Chemical Name</th>
+          <th>Brand</th>
+          <th>Quantity</th>
+          <th>Request Date</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let request of filteredRequests; let i = index">
+          <td>{{i+1}}</td>
+          <td>{{request.user.username}}</td>
+          <td>{{request.agroChemical.name}}</td>
+          <td>{{request.agroChemical.brand}}</td>
+          <td>{{request.quantity}}</td>
+          <td>{{request.requestDate}}</td>
+          <td>{{request.status}}</td>
+          <td>
+            <button (click)="showProfileMore(request)">Show More</button>
+            <button *ngIf="request.status === 'Pending'" class="approve" (click)="approveRequest(request)">Approve</button>
+            <button *ngIf="request.status === 'Approved'" class="reject" (click)="rejectRequest(request)">Reject</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+   
+  <div *ngIf="showMorePopup && selectedRequest" class="popup">
+    <div class="popup-content">
+      <p><strong>Chemical Name:</strong> {{ selectedRequest.agroChemical.name }}</p>
+      <p><strong>Chemical Description:</strong> {{ selectedRequest.agroChemical.description }}</p>
+      <p><strong>Chemical Brand:</strong> {{ selectedRequest.agroChemical.brand }}</p>
+      <p><strong>Chemical Category:</strong> {{ selectedRequest.agroChemical.category }}</p>
+      <p><strong>Crop Name:</strong> {{ selectedRequest.crop.cropName }}</p>
+      <p><strong>Crop Type:</strong> {{ selectedRequest.crop.cropType }}</p>
+      <p><strong>Request Quantity:</strong> {{ selectedRequest.quantity }}</p>
+      <p><strong>Request Date:</strong> {{ selectedRequest.requestDate }}</p>
+      <p><strong>Chemical Image:</strong> <img [src]="selectedRequest.agroChemical.image" alt="{{ selectedRequest.agroChemical.name }} image"></p>
+      <button (click)="closeShowMorePopup()">Close</button>
+    </div>
+  </div>

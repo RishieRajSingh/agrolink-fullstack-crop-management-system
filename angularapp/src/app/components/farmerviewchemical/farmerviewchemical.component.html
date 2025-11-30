@@ -1,0 +1,71 @@
+<div class="container">
+  <div class="header">
+    <h1><strong>Available Agrochemicals</strong></h1>
+    <input type="text" placeholder="Search" class="search-box" />
+  </div>
+  <table class="agrochemicals-table">
+    <thead>
+      <tr>
+        <th>S.No</th>
+        <th>Name</th>
+        <th>Brand</th>
+        <th>Category</th>
+        <th>Description</th>
+        <th>Unit</th>
+        <th>Price Per Unit</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let chemical of chemicals; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ chemical.name }}</td>
+        <td>{{ chemical.brand }}</td>
+        <td>{{ chemical.category }}</td>
+        <td>{{ chemical.description }}</td>
+        <td>{{ chemical.unit }}</td>
+        <td>{{ chemical.pricePerUnit | currency:'INR':'symbol' }}</td>
+        <td>
+          <button  (click)="showMore(chemical)">Show more</button>
+          <button class="request-btn" (click)="request(chemical)">Request</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="showMorePopup" class="popup">
+    <div class="popup-content">
+      <h2>Agrochemical Information</h2>
+      <p><strong>Name:</strong> {{ selectedChemical?.name }}</p>
+      <p><strong>Brand:</strong> {{ selectedChemical?.brand }}</p>
+      <p><strong>Category:</strong> {{ selectedChemical?.category }}</p>
+      <p><strong>Description:</strong> {{ selectedChemical?.description }}</p>
+      <p><strong>Unit:</strong> {{ selectedChemical?.unit }}</p>
+      <p><strong>Price Per Unit:</strong> {{ selectedChemical?.pricePerUnit | currency:'INR':'symbol' }}</p>
+      <button (click)="closeShowMorePopup()">Close</button>
+    </div>
+  </div>
+
+  <div *ngIf="requestPopup" class="popup">
+    <div class="popup-content">
+      <h2>Request Form</h2>
+      <form [formGroup]="farmerchemical" (ngSubmit)="onSubmit()">
+        <label for="cropId">Crop ID</label>
+        <select formControlName="cropId" id="cropId" class="cropId" required>
+          <option value="">Select</option>
+          <option *ngFor="let crop of crops" [value]="crop.cropId">{{ crop.cropId }}</option>
+        </select>
+        <div *ngIf="f.cropId.invalid && f.cropId.touched">
+          <small class="form-error" *ngIf="f.cropId.errors?.required">Crop Id is required</small>
+        </div>
+        <label for="quantity">Quantity</label>
+        <input type="number" formControlName="quantity" class="quantity">
+        <div *ngIf="f.quantity.invalid && f.quantity.touched">
+          <small class="form-error" *ngIf="f.quantity.errors?.required">Quantity is required</small>
+        </div>
+        <button type="submit" class="submit-btn">Submit</button>
+        <button type="button" class="cancel-btn" (click)="closeRequestPopup()">Cancel</button>
+      </form>      
+      <p><strong>Name:</strong> {{ selectedChemical?.name }}</p>
+    </div>
+  </div>

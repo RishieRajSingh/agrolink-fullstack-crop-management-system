@@ -1,0 +1,28 @@
+<div class="nav-links">
+    <nav class="user-navbar">
+        <div class="logo">AgroLink</div>
+        <button class="user-btn">{{username}} / Farmer</button>
+        <a routerLink="/home">Home</a>
+        <select name="crop" id="crop" class="crop-select" (change)="onCropChange($event)">
+            <option value="">Crop</option>
+            <option value="addcrop">Add Crop</option>
+            <option value="viewcrop">My Crop</option>
+        </select>
+        <a routerLink="/farmerviewchemical">Agrochemicals</a>
+        <a id="myRequest" class="my-request-link" routerLink="/farmermyrequest">My Requests</a>
+        <select name="feedback" id="feedback" class="feedback-select" (change)="onFeedbackChange($event)">
+            <option value="">Feedback</option>
+            <option value="postfeedback">Post Feedback</option>
+            <option value="viewfeedback">My Feedbacks</option>
+        </select>
+        <button class="logout-btn" id="logoutBtn">Logout</button>
+    </nav>
+</div>
+
+<div class="popup-confirm" id="logoutConfirmPopup">
+    <p>Do you want to logout?</p>
+    <div class="button-grid">
+        <button id="confirmYes">Yes</button>
+        <button id="confirmNo">No</button>
+    </div>
+</div>

@@ -1,0 +1,45 @@
+<form [formGroup]="cropForm" (ngSubmit)="addOrUpdateCrop()">
+  <h2>Create New Crop</h2>
+  <div>
+    <label for="cropName" class="required">Crop Name</label>
+    <input type="text" name="cropName" id="cropName" formControlName="cropName">
+    <div *ngIf="cropForm.controls['cropName'].invalid && cropForm.controls['cropName'].touched">
+      <small class="form-error" *ngIf="f.cropName.errors?.required">Crop Name is required.</small>
+      <small class="form-error" *ngIf="f.cropName.errors?.pattern">Crop Name must be in correct pattern.</small>
+    </div>
+  </div>
+ 
+  <div>
+    <label for="cropType" class="required">Crop Type</label>
+    <select name="cropType" id="cropType" formControlName="cropType">
+      <option value="">Select Crop Type</option>
+      <option value="fruit">Fruit</option>
+      <option value="vegetable">Vegetable</option>
+      <option value="grain">Grain</option>
+      <option value="legume">Legume</option>
+      <option value="tuber">Tuber</option>
+    </select>
+    <div *ngIf="cropForm.controls['cropType'].invalid && cropForm.controls['cropType'].touched">
+      <small class="form-error" *ngIf="f.cropType.errors?.required">Crop Type is required.</small>
+    </div>
+  </div>
+ 
+  <div>
+    <label for="description" class="required">Description</label>
+    <input type="text" name="description" id="description" formControlName="description">
+    <div *ngIf="cropForm.controls['description'].invalid && cropForm.controls['description'].touched">
+      <small class="form-error" *ngIf="f.description.errors?.required">Description is required.</small>
+      <small class="form-error" *ngIf="f.description.errors?.pattern">Description must be in correct pattern.</small>
+    </div>
+  </div>
+ 
+  <div>
+    <label for="plantingDate" class="required">Planting Date</label>
+    <input type="date" name="plantingDate" id="plantingDate" formControlName="plantingDate" [min]="todayDate">
+    <div *ngIf="cropForm.controls['plantingDate'].invalid && cropForm.controls['plantingDate'].touched">
+      <small class="form-error" *ngIf="f.plantingDate.errors?.required">Planting Date is required.</small>
+    </div>
+  </div>
+ 
+  <button type="submit">Submit</button>
+</form>

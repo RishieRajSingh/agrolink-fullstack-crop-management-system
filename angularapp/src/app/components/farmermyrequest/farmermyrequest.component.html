@@ -1,0 +1,37 @@
+<div class="container">
+    <div class="header">
+      <h1><strong>My Requests</strong></h1>
+      <input type="text" placeholder="Search" class="search-box" />
+    </div>
+  
+    <table class="agrochemicals-table">
+      <thead>
+        <tr>
+          <th>S.No</th>
+          <th>AgroChemicalName</th>
+          <th>Brand</th>
+          <th>Category</th>
+          <th>Quantity</th>
+          <th>Submission Date</th>
+          <th>Crop Name</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let request of requestdata; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ request.agroChemicalName }}</td>
+          <td>{{ request.brand }}</td>
+          <td>{{ request.category }}</td>
+          <td>{{ request.quantity }}</td>
+          <td>{{ request.submissionDate }}</td>
+          <td>{{ request.cropName }}</td>
+          <td>{{ request.status }}</td>
+          <td>
+            <button (click)="deleteRequest(request.requestId)">Delete</button>
+          </td>          
+        </tr>
+      </tbody>
+    </table>
+  </div>

@@ -1,0 +1,37 @@
+  <div class="container" [class.modal-open]="isModalOpen">
+    <div class="header">
+      <h1><strong>Feedback Details</strong></h1>
+    </div>
+    <table class="feedback-table" *ngIf="feedbackData && feedbackData.length">
+      <thead>
+        <tr>
+          <th>S.No</th>
+          <th>User Name</th>
+          <th>Feedback</th>
+          <th>Posted Date</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let feedback of feedbackData; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ feedback?.user?.username }}</td>
+          <td>{{ feedback.feedbackText }}</td>
+          <td>{{ feedback.date }}</td>
+          <td>
+            <button (click)="showProfile(feedbackData,feedback.user?.userId)">Show Profile</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <div *ngIf="isModalOpen" class="modal">
+      <div class="modal-content">
+        <span (click)="closeModal()" class="close">&times;</span>
+        <h2>User Profile</h2>
+        <p><strong>User Name:</strong> {{ selectedUser?.username }}</p>
+        <p><strong>Email:</strong> {{ selectedUser?.email }}</p>
+        <p><strong>Mobile Number:</strong> {{ selectedUser?.mobileNumber }}</p>
+      </div>
+    </div>
+  </div>

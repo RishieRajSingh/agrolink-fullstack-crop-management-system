@@ -1,0 +1,10 @@
+<div *ngIf="!isLoggedIn">
+    <app-navbar></app-navbar>
+</div>
+<div *ngIf="isLoggedIn && isSeller">
+    <app-sellernav></app-sellernav>
+</div>
+<div *ngIf="isLoggedIn && isFarmer">
+    <app-farmernav></app-farmernav>
+</div>
+<router-outlet></router-outlet>

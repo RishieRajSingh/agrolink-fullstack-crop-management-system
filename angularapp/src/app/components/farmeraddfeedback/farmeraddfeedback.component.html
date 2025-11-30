@@ -1,0 +1,16 @@
+<h1>Add Feedback</h1>
+<div class="feedback-container">
+  <form [formGroup]="feedbackForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="feedbackText">Feedback:</label>
+      <textarea id="feedbackText" formControlName="feedbackText" rows="18" class="form-control" required></textarea>
+      <div *ngIf="f.feedbackText.invalid && f.feedbackText.touched">
+        <small *ngIf="f.feedbackText.errors?.required" class="error-message">Feedback is required</small>
+        <small *ngIf="f.feedbackText.errors?.pattern" class="error-message">Feedback must be in correct pattern</small>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+ 
+ 

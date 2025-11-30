@@ -1,0 +1,65 @@
+<form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+    <h2>Registration</h2>
+
+    <div>
+        <label for="username">Username</label><br>
+        <input type="text" id="username" name="username" required formControlName="username"/>
+        <div class="formcontrols" *ngIf="f.username.invalid && f.username.touched">
+            <small class="form-error" *ngIf="f.username.errors?.required">Username is required</small>
+        </div>
+    </div>
+
+    <div>
+        <label for="email">Email</label><br>
+        <input type="email" id="email" name="email" required formControlName="email"/>
+        <div class="formcontrols" *ngIf="f.email.invalid && f.email.touched">
+            <small class="form-error" *ngIf="f.email.errors?.required">Email is required</small>
+            <small class="form-error" *ngIf="f.email.errors?.email">Please enter a valid email</small>
+        </div>
+    </div>
+
+    <div>
+        <label for="password">Password</label><br>
+        <input type="password" id="password" name="password" required formControlName="password"/>
+        <div class="formcontrols" *ngIf="f.password.invalid && f.password.touched">
+            <small class="form-error" *ngIf="f.password.errors?.required">Password is required</small>
+            <small class="form-error" *ngIf="f.password.errors?.pattern">
+                Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one digit, and one special character
+            </small>
+        </div>
+    </div>
+
+    <div>
+        <label for="confirm_password">Confirm Password</label><br>
+        <input type="password" id="confirm_password" name="confirm_password" required formControlName="confirm_password"/>
+        <div class="formcontrols" *ngIf="f.confirm_password.invalid && (f.confirm_password.touched || registrationForm.errors?.mustMatch)">
+            <small class="form-error" *ngIf="f.confirm_password.errors?.required">Confirm Password is required</small>
+            <small class="form-error" *ngIf="registrationForm.errors?.mustMatch">
+                Passwords do not match
+            </small>
+        </div>
+    </div>
+
+    <div>
+        <label for="mobileNumber">Mobile Number</label><br>
+        <input type="tel" id="mobileNumber" name="mobileNumber" required formControlName="mobileNumber"/>
+        <div class="formcontrols" *ngIf="f.mobileNumber.invalid && f.mobileNumber.touched">
+            <small class="form-error" *ngIf="f.mobileNumber.errors?.required">Mobile Number is required</small>
+            <small class="form-error" *ngIf="f.mobileNumber.errors?.pattern">Please enter a valid 10-digit mobileNumber number</small>
+        </div>
+    </div>
+
+    <div>
+        <label for="userRole">Role</label><br>
+        <select id="userRole" name="userRole" formControlName="userRole">
+            <option value="">Select a Role</option>
+            <option value="ROLE_FARMER">Farmer</option>
+            <option value="ROLE_SELLER">Seller</option>
+        </select>
+        <div class="formcontrols" *ngIf="f.userRole.invalid && f.userRole.touched">
+            <small class="form-error" *ngIf="f.userRole.errors?.required">Role is required</small>
+        </div>
+    </div>
+
+    <button type="submit">Register</button>
+</form>
